@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'webapp.apps.WebappConfig',
-    'rest_framework'
+    'accounts.apps.AccountsConfig',
 ]
     # 'webapp',
     # 'rest_framework'
@@ -124,5 +125,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # custom configuration
-LOGIN_REDIRECT_URL = '/webapp/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
