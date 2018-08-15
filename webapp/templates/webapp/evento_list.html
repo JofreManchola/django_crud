@@ -1,0 +1,18 @@
+<h1>Cursos de Platzi</h1>
+
+<p>
+    <a href="{% url "webapp:new" %}">Agregar evento</a>
+</p>
+
+<ul>
+    {% for evento in object_list %}
+        <li>
+            <p>{{ evento }}</p>
+            <p>
+                <a href="{% url "webapp:detail" evento.id %}">Ver</a> | 
+                <a href="{% url "webapp:edit" evento.id %}">Editar</a> | 
+                <a href="{% url "webapp:delete" evento.id %}">Borrar</a> 
+            </p>
+        </li>
+    {% endfor %}
+</ul>

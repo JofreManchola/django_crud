@@ -1,0 +1,62 @@
+{% extends 'webapp/base.html' %} {% block title %}RSS{% endblock %} {% block pagecontent %}
+
+<div>
+    <table style="width:40%">
+        <tr>
+            <td><label>Título:</label></td> <td><input id="titulo" type="text" placeholder="Ingrese el título aquí"></td>
+        </tr>
+        <tr>
+            <td><label>Descripción:</label></td><td><input id="descripcion" type="text" placeholder="Ingrese la descripción aquí"></td>
+        </tr>
+        <tr>
+            <td><label>Categoría:</label></td><td><input id="categoria" type="text" placeholder="Ingrese la categoría aquí"></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h2>Títulos sin filtro</h2>
+    <div id="sinFiltro">
+
+
+        <!-- {% if latest_question_list %}
+        <ul>
+            {% for question in latest_question_list %}
+            <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No polls are available.</p>
+        {% endif %} -->
+    </div>
+</div>
+<div>
+    <h2>Títulos sin filtro</h2>
+    <div id="sinFiltro"></div>
+</div>
+<div>
+    <h2>Títulos sin filtro</h2>
+    <div id="sinFiltro"></div>
+</div>
+<ul>
+    {% if latest_question_list %}
+    <ul>
+    {% for evento in latest_question_list %}
+        <li><a href="/{{ evento.id }}/">{{ evento }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>No hay eventos disponibles.</p>
+    {% endif %}
+</ul>
+
+    <!-- {% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} -->
+
+{% endblock %}

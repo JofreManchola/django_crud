@@ -1,0 +1,13 @@
+<h1>{{ evento }}</h1>
+<p>nombre: <i>{{ evento.nombre }}</i></p>
+<p>categoria: <i>{{ evento.categoria }}</i></p>
+<p>lugar: <i>{{ evento.lugar }}</i></p>
+<p>direccion: <i>{{ evento.direccion }}</i></p>
+<p>fecha_inicio: <i>{{ evento.fecha_inicio }}</i></p>
+<p>fecha_fin: <i>{{ evento.fecha_fin }}</i></p>
+<p>tipo: <i>{{ evento.tipo }}</i></p>
+
+
+<p>
+    <a href="{% url "webapp:list" %}">Regresar</a>
+</p>
