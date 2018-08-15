@@ -24,8 +24,8 @@ from rest_framework import routers
 from webapp import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+# router.register(r'users', views.UserViewSet)
+# router.register(r'groups', views.GroupViewSet)
 router.register(r'Eventos', views.EventoViewSet)
 
     # url(r'^login/$', auth_views.login, name='login'),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^webapp/', include('webapp.urls', namespace='webapp')),
+    url(r'api/', include(router.urls)),
+    url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'webapp/', include('webapp.urls', namespace='webapp')),
 ]
