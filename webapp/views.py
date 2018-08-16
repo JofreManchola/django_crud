@@ -54,8 +54,8 @@ class EventoUpdate(LoginRequiredMixin, UpdateView):
     fields = ['nombre', 'categoria', 'lugar', 'direccion', 'fecha_inicio', 'fecha_fin', 'tipo']
 
     def form_valid(self, form):
-        if form.instance.userId != self.request.user:
-            raise ValidationError(self.request.user+"is not the owner of the event")
+        # if form.instance.userId != self.request.user:
+        #     raise ValidationError(self.request.user+"is not the owner of the event")
             # return False
         return super().form_valid(form)
 
