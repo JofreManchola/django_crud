@@ -19,28 +19,46 @@ from django.contrib.auth.models import User, Group
 from .models import Evento
 from .serializers import UserSerializer, GroupSerializer, EventoSerializer
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 ##########################
 # Vistas para CRUD Evento
 ##########################
-class EventoList(ListView):
+class EventoList(LoginRequiredMixin, ListView):
     # template_name = 'webapp/index.html'
     # context_object_name = 'latest_question_list'
+    # if request.user.is_authenticated():
+    #     queryset = Evento.objects.all().filter(userId = user)
+    # else:
+    #     queryset = Evento.objects.all()
     model = Evento
 
-class EventoDetail(DetailView):
+    def get_queryset(self):
+        return Evento.objects.filter(userId=self.request.user).order_by('fecha_creacion')
+
+class EventoDetail(LoginRequiredMixin, DetailView):
     model = Evento
 
-class EventoCreation(CreateView):
+class EventoCreation(LoginRequiredMixin, CreateView):
     model = Evento
     success_url = reverse_lazy('webapp:list')
     fields = ['nombre', 'categoria', 'lugar', 'direccion', 'fecha_inicio', 'fecha_fin', 'tipo']
 
-class EventoUpdate(UpdateView):
+    def form_valid(self, form):
+        form.instance.userId = self.request.user
+        return super().form_valid(form)
+
+class EventoUpdate(LoginRequiredMixin, UpdateView):
     model = Evento
     success_url = reverse_lazy('webapp:list')
     fields = ['nombre', 'categoria', 'lugar', 'direccion', 'fecha_inicio', 'fecha_fin', 'tipo']
 
-class EventoDelete(DeleteView):
+    def form_valid(self, form):
+        if form.instance.userId != self.request.user:
+            return False
+        return super().form_valid(form)
+
+class EventoDelete(LoginRequiredMixin, DeleteView):
     model = Evento
     success_url = reverse_lazy('webapp:list')
 ##########################

@@ -40,7 +40,9 @@ class Evento(models.Model):
         help_text='Fecha y hora de finalización del evento', verbose_name='Fecha de finalización')
     tipo = models.CharField(
         max_length=20, choices=TIPO_CHOICES, help_text='Tipo del evento: Presencial o virtual', verbose_name='Tipo')
-    # userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    fecha_creacion = models.DateTimeField(
+        help_text='Fecha y hora de creación del evento', verbose_name='Fecha de creación', auto_now_add=True)
 
     class Meta:
         verbose_name = "Evento"
@@ -48,7 +50,7 @@ class Evento(models.Model):
 
     def __str__(self):
         tmpTipo = [item[1]
-                   for item in self.CATEGORIA_CHOICES if item[0] == self.CONFERENCIA][0]
+                   for item in self.CATEGORIA_CHOICES if item[0] == self.categoria][0]
         return self.nombre + ' (' + tmpTipo + ')'
 
     def __unicode__(self):
