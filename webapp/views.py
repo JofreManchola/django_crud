@@ -34,7 +34,7 @@ class EventoList(LoginRequiredMixin, ListView):
     model = Evento
 
     def get_queryset(self):
-        return Evento.objects.filter(userId=self.request.user).order_by('fecha_creacion')
+        return Evento.objects.filter(userId=self.request.user).order_by('-fecha_creacion')
 
 class EventoDetail(LoginRequiredMixin, DetailView):
     model = Evento
@@ -55,7 +55,8 @@ class EventoUpdate(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         if form.instance.userId != self.request.user:
-            return False
+            raise ValidationError(self.request.user+"is not the owner of the event")
+            # return False
         return super().form_valid(form)
 
 class EventoDelete(LoginRequiredMixin, DeleteView):
